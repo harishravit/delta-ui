@@ -130,7 +130,7 @@
         {
           "path": "src/components/comment/comment.css",
           "type":"registry:style",
-          "target": "components/comment" 
+          "target": "components/comment/comment.css" 
         }
       ]
     }
