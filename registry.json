@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "delta-ui",
-  "homepage": "http://localhost:3000",
+  "homepage": "https://github.com/harishravit/delta-ui",
   "items": [
     {
       "name": "comment",
@@ -9,22 +9,22 @@
       "files": [
         {
           "path": "src/components/comment/context/useThreadLine.tsx",
-          "type": "registry:component",
+          "type": "registry:hook",
           "target": "components/comment/context/useThreadLine.tsx"
         },
         {
           "path": "src/components/comment/lib/utils/comment-data-sample.ts",
-          "type": "registry:component",
+          "type": "registry:lib",
           "target": "components/comment/lib/utils/comment-data-sample.ts"
         },
         {
           "path": "src/components/comment/lib/utils/helpers.ts",
-          "type": "registry:component",
+          "type": "registry:lib",
           "target": "components/comment/lib/utils/helpers.ts"
         },
         {
           "path": "src/components/comment/types/comment.type.ts",
-          "type": "registry:component",
+          "type": "registry:file",
           "target": "components/comment/types/comment.type.ts"
         },
         {
