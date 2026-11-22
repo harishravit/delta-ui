@@ -1,7 +1,6 @@
-import CommentThreadLine from "@/components/comment/ui/comment-threadine";
+import CommentThreadLine from "@/components/comment/ui/comment-threadline";
 import { cn } from "cn";
 import type { ComponentPropsWithRef } from "react";
-// [data-slot=comment-reply-list]:last-child_>[data-slot=comment-reply-item]:not(:has(>[data-slot=comment-reply-toggle]))>[data-slot=comment-thread]>[data-thread=vertical]]:invisible
 const CommentReplyItem = ({
   className,
   children,

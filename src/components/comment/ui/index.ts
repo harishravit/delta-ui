@@ -16,5 +16,5 @@ export { default as CommentReplyList } from "./comment-reply-list";
 export { default as CommentReplyToggle } from "./comment-reply-toggle";
 export { default as CommentSeparator } from "./comment-separator";
 export { default as CommentSide } from "./comment-side";
-export { default as CommentThreadLine } from "./comment-threadine";
+export { default as CommentThreadLine } from "./comment-threadline";
 

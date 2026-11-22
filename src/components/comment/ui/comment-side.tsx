@@ -1,6 +1,6 @@
+import CommentThreadLine from "@/components/comment/ui/comment-threadline";
 import { cn } from "cn";
 import type { ComponentPropsWithRef } from "react";
-import CommentThreadLine from "./comment-threadine";
 
 const CommentSide = ({
   className,

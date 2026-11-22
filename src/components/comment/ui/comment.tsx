@@ -1,7 +1,7 @@
+import "@/components/comment/comment.css";
+import { CommentThreadLineProvider } from "@/components/comment/context/useThreadLine";
 import { cn } from "cn";
 import { type ComponentProps } from "react";
-import "../comment.css";
-import { CommentThreadLineProvider } from "../context/useThreadLine";
 type CommentProps = ComponentProps<"div"> & {
   disableBend?: boolean;
   disableThreads?: boolean;

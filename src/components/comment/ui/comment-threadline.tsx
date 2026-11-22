@@ -1,7 +1,7 @@
+import { useThreadLine } from "@/components/comment/context/useThreadLine";
+import CommentRail from "@/components/comment/ui/comment-rail";
 import { cn } from "cn";
 import { type ComponentProps, type ReactNode } from "react";
-import { useThreadLine } from "../context/useThreadLine";
-import CommentRail from "./comment-rail";
 
 type ThreadLineVarients = "reply" | "avatar";
 interface ThreadLineProps extends ComponentProps<"div"> {

@@ -124,7 +124,7 @@
         },
         {
           "path": "src/components/comment/ui/index.ts",
-          "type": "registry:component",
+          "type": "registry:file",
           "target": "components/comment/ui/index.ts"
         },
         {

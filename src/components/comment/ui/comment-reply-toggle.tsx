@@ -1,7 +1,7 @@
+import { useThreadLine } from "@/components/comment/context/useThreadLine";
+import CommentThreadLine from "@/components/comment/ui/comment-threadline";
 import { cn } from "cn";
 import type { ComponentPropsWithRef } from "react";
-import { useThreadLine } from "../context/useThreadLine";
-import CommentThreadLine from "./comment-threadine";
 
 const CommentReplyToggle = ({
   className,
