@@ -1,11 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "@delta-ui",
+  "name": "delta-ui",
   "homepage": "https://github.com/harishravit/delta-ui",
   "items": [
     {
       "name": "comment",
       "type": "registry:component",
+      "title": "Comment",
+      "description": "A flexible react comment component",
       "files": [
         {
           "path": "src/components/comment/context/useThreadLine.tsx",
@@ -113,9 +115,9 @@
           "target": "components/comment/ui/comment-side.tsx"
         },
         {
-          "path": "src/components/comment/ui/comment-threadine.tsx",
+          "path": "src/components/comment/ui/comment-threadline.tsx",
           "type": "registry:component",
-          "target": "components/comment/ui/comment-threadine.tsx"
+          "target": "components/comment/ui/comment-threadline.tsx"
         },
         {
           "path": "src/components/comment/ui/comment.tsx",
