@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "delta-ui",
-  "homepage": "https://github.com/harishravit/delta-ui",
+  "homepage": "https://deltaui.vercel.app",
   "items": [
     {
       "name": "comment",
