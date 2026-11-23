@@ -23,8 +23,8 @@ export const formatCommentTime = (date: string): string => {
   return `${years}y`;
 };
 
-export const getUserFallbackName = (name: string): string => {
-  return name
+export const getUserFallbackName = (name?: string): string => {
+  return (name ?? "")
     .trim()
     .split(/\s+/)
     .filter(Boolean)
