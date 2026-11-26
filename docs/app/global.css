@@ -15,4 +15,13 @@ a{
 }
 p>a{
   font-size: var(--text-xl);
+  &:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+@layer utilities{
+  .nav-link{
+    @apply underline! decoration-2!
+  }
 }

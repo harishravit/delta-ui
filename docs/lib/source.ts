@@ -9,7 +9,7 @@ const docs = defineDocs({
   dir: 'content/docs',
   docs: {
     schema:pageSchema.extend({
-      hideFooter:z.boolean().optional()
+      hideFooter:z.boolean().optional(),
     }),
     postprocess: {
       includeProcessedMarkdown: true,

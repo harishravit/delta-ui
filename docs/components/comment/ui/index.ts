@@ -1,0 +1,20 @@
+export { default as Comment } from "./comment";
+export * from "./comment-avatar";
+export { default as CommentBody } from "./comment-body";
+export { default as CommentContent } from "./comment-content";
+export { default as CommentFooter } from "./comment-footer";
+export { default as CommentHeader } from "./comment-header";
+export { default as CommentHeaderItem } from "./comment-header-item";
+export { default as CommentHeaderItemGroup } from "./comment-header-item-group";
+export { default as CommentMain } from "./comment-main";
+export { default as CommentMessageContent } from "./comment-message-content";
+export { default as CommentMessageMedia } from "./comment-message-media";
+export { default as CommentMessageText } from "./comment-message-text";
+export { default as CommentRail } from "./comment-rail";
+export { default as CommentReplyItem } from "./comment-reply-item";
+export { default as CommentReplyList } from "./comment-reply-list";
+export { default as CommentReplyToggle } from "./comment-reply-toggle";
+export { default as CommentSeparator } from "./comment-separator";
+export { default as CommentSide } from "./comment-side";
+export { default as CommentThreadLine } from "./comment-threadline";
+

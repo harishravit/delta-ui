@@ -7,23 +7,23 @@ description: A flexible React component for building a comment section. Add comm
 
 <Tabs items={["pnpm", "npm", "yarn", "bun"]} groupId="pm" persist>
   <Tab value="pnpm">
-    ```
-    bash pnpm dlx shadcn@latest add harishravit/delta-ui/comment
+    ```bash
+    pnpm dlx shadcn@latest add harishravit/delta-ui/comment
     ```
   </Tab>
   <Tab value="npm">
-    ```
-    bash npx shadcn@latest add harishravit/delta-ui/comment 
+    ```bash
+    npx shadcn@latest add harishravit/delta-ui/comment 
     ```
   </Tab>
   <Tab value="yarn">
-    ```
-    bash yarn dlx shadcn@latest add harishravit/delta-ui/comment 
+    ```bash
+    yarn dlx shadcn@latest add harishravit/delta-ui/comment 
     ```
 </Tab>
   <Tab value="bun">
-    ```
-    bash bunx --bun shadcn@latest add harishravit/delta-ui/comment 
+    ```bash
+    bunx --bun shadcn@latest add harishravit/delta-ui/comment
     ```
   </Tab>
 </Tabs>
@@ -236,7 +236,7 @@ const Comment = () => {
 
 export default Comment;
 ```
-
+## Code structure
 ```tsx title="comment.tsx" lineNumbers
 <Comment>
   <CommentMain>
@@ -289,8 +289,13 @@ export default Comment;
   </CommentReplyList>
 </Comment>
 ```
-## Sample output
-![Comment sample](/comment-sample.png)
+
+import Comment from "@/example/comment-demo"; 
+import ComponentPreview from "@/utils/component-preview";
+
+<ComponentPreview className="w-full" title="Comment.tsx">
+<Comment/>
+</ComponentPreview>
 ## Component composition
 
 Following composition to build your comment component.

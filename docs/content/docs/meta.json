@@ -1,10 +1,10 @@
 {
   "pages": [
-    "---Getting started---",
+    "---Overview---",
     "index",
-    "Components",
+    "components/index",
     "---Sections---",
     "components",
-    "..."
+    "hooks"
   ]
 }

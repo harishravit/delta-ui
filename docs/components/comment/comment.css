@@ -1,0 +1,323 @@
+:root {
+  /* ----COMMENT COMPONENT BASE SIZE CONSTANTS---- */
+  --comment-avatar-border: 0.125rem;
+  --comment-avatar-size: calc(2rem - var(--comment-avatar-border));
+  --comment-reply-avatar-size: var(--comment-avatar-size);
+  --comment-footer-avatar-size: round(
+    nearest,
+    calc(var(--comment-avatar-size) / 2),
+    1px
+  );
+  --comment-thread-line-stroke: 0.125rem;
+  --comment-avatar-top-padding: 0.5rem;
+  --comment-side-padding-right: round(
+    nearest,
+    calc((var(--comment-reply-avatar-size) / 2) - (var(--comment-avatar-border)  + var(--comment-thread-line-stroke))),
+    2px
+  );
+
+  /* ----THREAD CALCULATIONS---- */
+
+  /*handle gap between comment side avatar and the vertical line gap*/
+  --comment-thread-vertical-gap: round(
+    nearest,
+    calc(var(--comment-side-padding-right) / 2 + var(--comment-avatar-border)),
+    2px
+  );
+  /* handle gap between reply item avatar and it thread bend */
+  --comment-thread-bend-gap: round(
+    nearest,
+    calc(
+      var(--comment-side-padding-right) / 2 + var(--comment-avatar-border)  -
+        var(--comment-thread-line-stroke) * 2
+    ),
+    2px
+  );
+
+  /* handle thread vertical space area */
+  --comment-thread-vertical-row: round(
+    nearest,
+    calc(var(--comment-avatar-size) / 2),
+    2px
+  );
+
+  /* handle thread bend space area */
+  --comment-thread-bend-row: round(
+    nearest,
+    calc(
+      var(--comment-avatar-size) + var(--comment-thread-bend-gap) -
+        var(--comment-side-padding-right)
+    ),
+    1px
+  );
+  /* handle thread bend center this center logic work base on reply item avatar size*/
+  --comment-thread-bend-center: round(
+    nearest,
+    calc(
+      (
+          var(--comment-reply-avatar-size) / 2 +
+            var(--comment-avatar-top-padding)
+        ) +
+        var(--comment-avatar-border)
+    ),
+    2px
+  );
+
+  /* ----THREAD BORDER COLOR---- */
+  --border-thread-default: var(--color-gray-400);
+  --border-thread-hover: var(--color-gray-500);
+}
+
+/* only reply item: bend center = reply avatar size base */
+[data-slot="comment-reply-render"] {
+  --comment-thread-bend-row: round(
+    nearest,
+    calc(
+      var(--comment-reply-avatar-size) + var(--comment-thread-bend-gap) -
+        var(--comment-side-padding-right)
+    ),
+    1px
+  );
+  --comment-avatar-size: var(--comment-reply-avatar-size);
+  --comment-thread-bend-center: calc(
+    (var(--comment-reply-avatar-size) / 2) + var(--comment-avatar-top-padding) +
+      var(--comment-avatar-border)
+  );
+  --comment-thread-vertical-row: calc(var(--comment-reply-avatar-size) / 2);
+}
+/* comment root */
+/* Hide main thread when there are no replies and no reply toggle */
+[data-slot="comment"]
+  > [data-slot="comment-main"]:not(
+    :has(~ [data-slot="comment-reply-list"])
+  ):not(:has(~ [data-slot="comment-reply-toggle"]))
+  [data-slot="comment-thread"] {
+  display: none;
+}
+
+/* Hide straight thread lines of the last reply when there is no reply toggle */
+[data-slot="comment"]:not(:has(> [data-slot="comment-reply-toggle"]))
+  > [data-slot="comment-reply-list"]
+  > [data-slot="comment-reply-item"]:last-child
+  > [data-slot="comment-thread"]
+  > [data-thread]:not([data-thread="bend"]) {
+  display: none;
+}
+
+/* Adjust last reply thread height when there is no reply toggle */
+[data-slot="comment"]:not(:has(> [data-slot="comment-reply-toggle"]))
+  > [data-slot="comment-reply-list"]
+  > [data-slot="comment-reply-item"]:last-child
+  > [data-slot="comment-thread"] {
+  height: calc(
+    var(--comment-thread-bend-row) + var(--comment-avatar-top-padding)
+  );
+}
+
+/* Main thread hover: highlight all bottom sibling reply threads */
+[data-slot="comment"]:has(
+    > [data-slot="comment-main"]
+      [data-slot="comment-side"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-list"]
+  > *
+  > [data-slot="comment-thread"]
+  > *,
+[data-slot="comment"]:has(
+    > [data-slot="comment-main"]
+      [data-slot="comment-side"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-toggle"]
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Direct first reply thread hover: highlight main thread and reply toggle thread */
+[data-slot="comment"]:has(
+    > [data-slot="comment-reply-list"]
+      > [data-slot="comment-reply-item"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-main"]
+  [data-slot="comment-thread"]
+  > *,
+[data-slot="comment"]:has(
+    > [data-slot="comment-reply-list"]
+      > [data-slot="comment-reply-item"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-toggle"]
+  [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Direct reply toggle thread hover: highlight main thread and first reply thread */
+[data-slot="comment"]:has(
+    > [data-slot="comment-reply-toggle"]
+      [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-main"]
+  [data-slot="comment-thread"]
+  > *,
+[data-slot="comment"]:has(
+    > [data-slot="comment-reply-toggle"]
+      [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-list"]
+  > [data-slot="comment-reply-item"]
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+/* ----COMMENT THREADLINE---- */
+[data-slot="comment-thread"] > * {
+  border-color: var(--border-thread-default);
+}
+
+[data-slot="comment-thread"]:has([data-slot="comment-rail"]:hover)
+  > [data-thread] {
+  border-color: var(--border-thread-hover);
+}
+
+/* ----COMMENT REPLY ITEM---- */
+[data-slot="comment-reply-item"]
+  > [data-slot="comment-thread"]
+  [data-disablebend="true"]
+  [data-slot="comment-rail"] {
+  width: calc((var(--comment-avatar-size) / 2) + 1px);
+}
+
+/* ----COMMENT REPLY RENDER---- */
+/* Hide thread line when there is no reply list */
+[data-slot="comment-reply-render"]
+  > [data-slot="comment-content"]:not(:has(~ [data-slot="comment-reply-list"]))
+  > [data-slot="comment-side"]
+  > [data-slot="comment-thread"] {
+  display: none;
+}
+
+/* Highlight nested reply threads when parent thread rail is hovered */
+[data-slot="comment-reply-render"]:has(
+    > [data-slot="comment-content"]
+      [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-list"]
+  > *
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Highlight parent thread when nested reply thread rail is hovered */
+[data-slot="comment-reply-render"]:has(
+    > [data-slot="comment-reply-list"]
+      > *
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-content"]
+  [data-thread] {
+  border-color: var(--border-thread-hover);
+}
+
+/* Highlight sibling threads when reply item rail is hovered */
+[data-slot="comment-reply-render"]:has(
+    > [data-slot="comment-reply-list"]
+      > [data-slot="comment-reply-item"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > *
+  > *
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Highlight sibling threads when reply toggle rail is hovered */
+[data-slot="comment-reply-render"]:has(
+    > [data-slot="comment-reply-list"]
+      > [data-slot="comment-reply-toggle"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > *
+  > *
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Hide reply toggle */
+[data-slot="comment-reply-render"] > [data-slot="comment-reply-toggle"] {
+  display: none;
+}
+
+/*comment reply list*/
+/* Hide straight thread lines of the last reply when this is a nested reply list */
+[data-slot="comment-reply-list"]:not(
+    [data-slot="comment"] > [data-slot="comment-reply-list"]
+  )
+  > [data-slot="comment-reply-item"]:not(:has(+ *))
+  > [data-slot="comment-thread"]
+  > [data-thread]:not([data-thread="bend"]) {
+  display: none;
+}
+
+/* Adjust last reply thread height */
+[data-slot="comment-reply-list"]:not(
+    [data-slot="comment"] > [data-slot="comment-reply-list"]
+  )
+  > [data-slot="comment-reply-item"]:not(:has(+ *))
+  > [data-slot="comment-thread"] {
+  height: calc(
+    var(--comment-thread-bend-row) + var(--comment-avatar-top-padding)
+  );
+}
+
+/* Reply item thread hover: highlight reply toggle thread */
+[data-slot="comment-reply-list"]:has(
+    > [data-slot="comment-reply-item"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-toggle"]
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Reply toggle thread hover: highlight reply item thread */
+[data-slot="comment-reply-list"]:has(
+    > [data-slot="comment-reply-toggle"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > [data-slot="comment-reply-item"]
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
+
+/* Reply item thread hover: highlight sibling threads */
+[data-slot="comment-reply-list"]:has(
+    > [data-slot="comment-reply-item"]
+      > [data-slot="comment-thread"]
+      [data-slot="comment-rail"]:hover
+  )
+  > *
+  > [data-slot="comment-thread"]
+  > * {
+  border-color: var(--border-thread-hover);
+}
