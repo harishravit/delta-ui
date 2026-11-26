@@ -13,12 +13,12 @@
     1px
   );
   --comment-avatar-top-padding: 0.5rem;
-  --comment-side-padding-right: round(
+  --comment-thread-line-stroke: 0.125rem;
+   --comment-side-padding-right: round(
     nearest,
-    calc((var(--comment-reply-avatar-size) / 2) - var(--comment-avatar-border)),
+    calc((var(--comment-reply-avatar-size) / 2) - (var(--comment-avatar-border)  + var(--comment-thread-line-stroke))),
     2px
   );
-  --comment-thread-line-stroke: 0.125rem;
 
   /* ----THREAD CALCULATIONS---- */
 

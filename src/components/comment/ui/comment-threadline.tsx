@@ -1,3 +1,5 @@
+"use client";
+
 import { useThreadLine } from "@/components/comment/context/useThreadLine";
 import CommentRail from "@/components/comment/ui/comment-rail";
 import { cn } from "cn";

@@ -1,3 +1,4 @@
+"use client"
 import { formatCommentTime, getAvatar } from "@/components/comment/lib/utils/helpers";
 import {
   Comment,
@@ -25,7 +26,7 @@ import {
   ThumbsUp,
 } from "lucide-react";
 
-const TestComponent = () => {
+const CommentDemo = () => {
   return (
     <div className="container mx-auto max-w-xl flex items-center justify-center h-screen px-2">
       <div className="w-full overflow-y-auto scrollbar-thin">
@@ -57,7 +58,7 @@ const TestComponent = () => {
                       Software Engineer @Zoho
                     </span>
                   </CommentHeaderItemGroup>
-                  <CommentHeaderItem>
+                  <CommentHeaderItem className="shrink-0">
                     <Ellipsis
                       aria-label="more action"
                       className="size-4 cursor-pointer text-accent/85 hover:text-primary"
@@ -67,7 +68,7 @@ const TestComponent = () => {
 
                 <CommentMessageContent>
                   <CommentMessageText>
-                    <p className="min-w-0 wrap-break-word text-base w-fit">
+                    <p className="w-full min-w-0 break-words text-base">
                       I really like this design! The overall layout feels clean and intuitive.
                     </p>
                     <button
@@ -141,7 +142,7 @@ const TestComponent = () => {
                         Product Designer @Figma
                       </span>
                     </CommentHeaderItemGroup>
-                    <CommentHeaderItem>
+                    <CommentHeaderItem className="shrink-0">
                       <Ellipsis className="size-4 cursor-pointer text-accent/85 hover:text-primary" />
                     </CommentHeaderItem>
                   </CommentHeader>
@@ -155,7 +156,7 @@ const TestComponent = () => {
                         </button>
                       )}
                     >
-                      <p className="min-w-0 wrap-break-word text-base w-fit">
+                      <p className="w-full min-w-0 wrap-break-word text-base">
                         Agreed! The spacing and typography are really well balanced.
                       </p>
                     </CommentMessageText>
@@ -196,4 +197,4 @@ const TestComponent = () => {
   );
 };
 
-export default TestComponent;
+export default CommentDemo;

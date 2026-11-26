@@ -1,3 +1,5 @@
+"use client";
+
 import "@/components/comment/comment.css";
 import { CommentThreadLineProvider } from "@/components/comment/context/useThreadLine";
 import { cn } from "cn";

@@ -11,7 +11,7 @@ const CommentReplyList = ({
       data-slot="comment-reply-list"
       role="comment reply list"
       className={cn(
-        "relative flex flex-col flex-1 **:data-[slot=comment-side]:pt-2 **:data-[slot=comment-body]:pt-1 ",
+        "relative flex flex-col flex-1 min-w-0 **:data-[slot=comment-side]:pt-2",
         className,
       )}
       {...props}

@@ -10,7 +10,7 @@ const CommentMessageText = ({
   return (
     <div
       className={cn(
-        "w-full *:text-sm",
+        "w-full text-left *:text-sm",
         className,
       )}
       role="comment message text"
