@@ -1,5 +1,8 @@
-"use client"
-import { formatCommentTime, getAvatar } from "@/components/comment/lib/utils/helpers";
+"use client";
+import {
+  formatCommentTime,
+  getAvatar,
+} from "@/components/comment/lib/utils/helpers";
 import {
   Comment,
   CommentAvatar,
@@ -34,9 +37,9 @@ const CommentDemo = () => {
           <CommentMain>
             <CommentContent>
               <CommentSide>
-                <CommentAvatar className="bg-red-500">
+                <CommentAvatar className="bg-blue-500 ">
                   <CommentAvatarImage
-                    src={getAvatar("olivia-rhye")}
+                    src={getAvatar("Harish-ravi")}
                     alt="olivia"
                   />
                 </CommentAvatar>
@@ -45,9 +48,11 @@ const CommentDemo = () => {
                 <CommentHeader>
                   <CommentHeaderItemGroup>
                     <CommentHeaderItem>
-                      <h3 className="text-sm text-primary font-semibold">olivia</h3>
+                      <h3 className="text-sm text-primary font-semibold">
+                        Harish
+                      </h3>
                       <a className="text-accent/90 font-medium cursor-pointer hover:text-primary">
-                        @Olivia Rhye
+                        @Harish Ravi
                       </a>
                       <span className="text-accent/90">&bull;</span>
                       <span className="text-accent/90">
@@ -55,7 +60,7 @@ const CommentDemo = () => {
                       </span>
                     </CommentHeaderItem>
                     <span className="font-medium text-accent/90">
-                      Software Engineer @Zoho
+                      Author of @Delta-ui
                     </span>
                   </CommentHeaderItemGroup>
                   <CommentHeaderItem className="shrink-0">
@@ -69,7 +74,8 @@ const CommentDemo = () => {
                 <CommentMessageContent>
                   <CommentMessageText>
                     <p className="w-full min-w-0 break-words text-base">
-                      I really like this design! The overall layout feels clean and intuitive.
+                      I really like this design! The overall layout feels clean
+                      and intuitive.
                     </p>
                     <button
                       role="readmore text"
@@ -99,8 +105,8 @@ const CommentDemo = () => {
                     <ThumbsUp className="size-4 translate-y-0.5" />
                     24
                   </button>
-                  <button className="bg-transparent">
-                    <CommentAvatar className="bg-red-400">
+                  <button className="bg-transparent translate-y-1">
+                    <CommentAvatar className="bg-purple-400">
                       <CommentAvatarImage
                         src={getAvatar("olivia-rhye")}
                         alt="olivia"
@@ -112,16 +118,14 @@ const CommentDemo = () => {
               </CommentBody>
             </CommentContent>
           </CommentMain>
-
-          {/* ---------- Reply ---------- */}
           <CommentReplyList>
             <CommentReplyItem>
               <CommentContent>
                 <CommentSide>
-                  <CommentAvatar className="bg-red-500">
+                  <CommentAvatar className="bg-yellow-500">
                     <CommentAvatarImage
-                      src={getAvatar("phoenix-baker")}
-                      alt="phoenix"
+                      src={getAvatar("harsha")}
+                      alt="harsha"
                     />
                   </CommentAvatar>
                 </CommentSide>
@@ -129,13 +133,15 @@ const CommentDemo = () => {
                   <CommentHeader>
                     <CommentHeaderItemGroup className="pr-2">
                       <CommentHeaderItem>
-                        <h3 className="text-sm text-primary font-semibold">phoenix</h3>
+                        <h3 className="text-sm text-primary font-semibold">
+                          its_harsha
+                        </h3>
                         <a className="text-accent/70 font-medium cursor-pointer hover:text-primary truncate">
-                          @Phoenix Baker
+                          @harsha
                         </a>
                         <span className="text-accent/70 text-sm">&bull;</span>
                         <span className="text-accent/70 text-xs truncate">
-                          {formatCommentTime("2026-11-11T11:00:00Z")}
+                          {formatCommentTime(new Date().toISOString())}
                         </span>
                       </CommentHeaderItem>
                       <span className="font-medium text-accent/70 truncate">
@@ -157,7 +163,8 @@ const CommentDemo = () => {
                       )}
                     >
                       <p className="w-full min-w-0 wrap-break-word text-base">
-                        Agreed! The spacing and typography are really well balanced.
+                        Agreed! The spacing and typography are really well
+                        balanced.
                       </p>
                     </CommentMessageText>
                   </CommentMessageContent>
@@ -167,8 +174,7 @@ const CommentDemo = () => {
                       data-item="dislike"
                       className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
                     >
-                      <ThumbsDown className="size-4 translate-y-1" />
-                      0
+                      <ThumbsDown className="size-4 translate-y-1" />0
                     </button>
                     <button
                       data-item="share"
@@ -177,13 +183,13 @@ const CommentDemo = () => {
                       <Share2 className="size-4 translate-y-1" />
                       share
                     </button>
-                    <button>
-                      <CommentAvatar className="bg-red-400">
+                    <button className="bg-transparent translate-y-1">
+                      <CommentAvatar className="bg-purple-400">
                         <CommentAvatarImage
-                          src={getAvatar("phoenix-baker")}
-                          alt="phoenix"
+                          src={getAvatar("olivia-rhye")}
+                          alt="olivia"
                         />
-                        <CommentAvatarBadge>🤣</CommentAvatarBadge>
+                        <CommentAvatarBadge>❤️</CommentAvatarBadge>
                       </CommentAvatar>
                     </button>
                   </CommentFooter>

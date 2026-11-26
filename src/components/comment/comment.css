@@ -2,21 +2,37 @@
   /* ----COMMENT COMPONENT BASE SIZE CONSTANTS---- */
   --comment-avatar-border: 0.125rem;
   --comment-avatar-size: calc(2.5rem - var(--comment-avatar-border));
+  --comment-avatar-top-padding: 0.5rem;
+  --comment-thread-line-stroke: 0.125rem;
+  /*
+       This is control the each reply item avatar size.
+       default this inherit main avatar size.
+
+       example:Youtube style different avatar sizes render for main and reply item.
+         --comment-reply-avatar-size: round(
+                nearest,
+                calc(var(--comment-avatar-size)),
+                2px
+          );
+   */
   --comment-reply-avatar-size: round(
     nearest,
-    calc(var(--comment-avatar-size) / 1.25),
+    calc(var(--comment-avatar-size)),
     2px
   );
+
   --comment-footer-avatar-size: round(
     nearest,
     calc(var(--comment-avatar-size) / 2),
     1px
   );
-  --comment-avatar-top-padding: 0.5rem;
-  --comment-thread-line-stroke: 0.125rem;
-   --comment-side-padding-right: round(
+
+  --comment-side-padding-right: round(
     nearest,
-    calc((var(--comment-reply-avatar-size) / 2) - (var(--comment-avatar-border)  + var(--comment-thread-line-stroke))),
+    calc(
+      (var(--comment-reply-avatar-size) / 2) -
+        (var(--comment-avatar-border) + var(--comment-thread-line-stroke))
+    ),
     2px
   );
 
@@ -62,7 +78,7 @@
           var(--comment-reply-avatar-size) / 2 +
             var(--comment-avatar-top-padding)
         ) +
-        var(--comment-avatar-border)
+        var(--comment-avatar-border) * 2
     ),
     2px
   );
