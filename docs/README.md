@@ -1,45 +1,27 @@
-# docs
+---
+title: Introduction
+description: Delta UI provides flexible React components and hooks to simplify building complex interfaces, with source code you can own and customize.
+---
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+## Why Delta UI?
 
-Run development server:
+Building complex UI components from scratch takes time. Styling, responsive layouts, and interaction logic all add to the effort.
 
-```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
-```
+Delta UI provides ready-made, flexible components and reusable logic so you can focus on building your product instead of rebuilding the same foundations.
 
-Open http://localhost:3000 with your browser to see the result.
+## What does Delta UI provide?
 
-## Explore
+Delta UI provides two essential building blocks:
 
-In the project, you can see:
+- **Components:** Ready-to-use, customizable components for building complex interfaces. Explore all <a href="/docs/all-components" className="nav-link">components</a>.
+- **Hooks:** Reusable logic for managing state, interactions, and component behavior. Explore all <a href="/docs/hooks" className="nav-link">hooks</a>.
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+Use them together or independently. Build your own logic around the components or use the provided hooks to power them.
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+## How does Delta UI work?
 
-### Fumadocs MDX
+Built with React, shadcn/ui, and Tailwind CSS, Delta UI follows a copy-and-paste approach. Add component source code directly to your project, customize it, and make it your own.
 
-Collections are defined with the [Macro API](https://fumadocs.dev/docs/mdx/macro) in `lib/source.ts`.
+Hooks can be added independently, giving you full control over how your components work.
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
-
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+Delta UI is growing, with more complex components and useful hooks on the way. Explore what's available, make it your own, and build something great.
