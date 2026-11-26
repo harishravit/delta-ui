@@ -26,6 +26,9 @@ import {
 import { Ellipsis, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
+const DEMO_PRIMARY_TIME = "2026-11-25T12:00:00.000Z";
+const DEMO_REPLY_TIME = "2026-11-26T12:00:00.000Z";
+
 const CommentDemo = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
@@ -40,20 +43,20 @@ const CommentDemo = () => {
           <CommentBody>
             <CommentHeader className="items-baseline">
               <CommentHeaderItemGroup>
-                <CommentHeaderItem>
-                  <h3 className="text-sm text-primary font-semibold m-0!">
-                    olivia
+                <CommentHeaderItem className="*:text-xs flex-wrap">
+                  <h3 className="text-sm! text-primary font-medium m-0!">
+                    Harish
                   </h3>
-                  <a className="text-accent/90 font-medium cursor-pointer hover:text-primary">
-                    @Olivia Rhye
+                  <a className="max-w-24 truncate text-xs text-accent/90 font-medium cursor-pointer hover:text-primary">
+                    @harish Ravi
                   </a>
                   <span className="text-accent/90">&bull;</span>
-                  <span className="text-accent/90">
-                    {formatCommentTime("2026-11-11T10:30:00Z")}
+                  <span className="text-accent/90 truncate">
+                    {formatCommentTime(DEMO_PRIMARY_TIME)}
                   </span>
                 </CommentHeaderItem>
-                <span className="font-medium text-accent/90">
-                  Software Engineer @Zoho
+                <span className="hidden font-medium *:text-xs! text-accent/90 sm:block">
+                  Author of <a href="https://delta-ui.vercel.app">@Delta-ui</a>
                 </span>
               </CommentHeaderItemGroup>
               <CommentHeaderItem className="shrink-0">
@@ -91,29 +94,29 @@ const CommentDemo = () => {
           <CommentReplyItem>
             <CommentContent>
               <CommentSide>
-                <CommentAvatar className="bg-red-500">
+                <CommentAvatar className="bg-yellow-500">
                   <CommentAvatarImage
-                    src={getAvatar("phoenix-baker")}
-                    alt="phoenix"
+                    src={getAvatar("Harsha_dev")}
+                    alt="Harsha_dev"
                   />
                 </CommentAvatar>
               </CommentSide>
               <CommentBody>
                 <CommentHeader className="items-baseline">
                   <CommentHeaderItemGroup className="pr-2">
-                    <CommentHeaderItem>
-                      <h3 className="text-sm text-primary font-semibold m-0!">
-                        phoenix
+                    <CommentHeaderItem className="*:text-xs flex-wrap">
+                      <h3 className="text-sm! text-primary font-medium m-0!">
+                        Harsha_dev
                       </h3>
-                      <a className="text-accent/70 font-medium cursor-pointer hover:text-primary truncate">
-                        @Phoenix Baker
+                      <a className="max-w-20 truncate text-accent/70 font-medium cursor-pointer hover:text-primary">
+                        @harsha
                       </a>
                       <span className="text-accent/70 text-sm">&bull;</span>
-                      <span className="text-accent/70 text-xs truncate">
-                        {formatCommentTime("2026-11-11T11:00:00Z")}
+                      <span className="max-w-24 truncate text-accent/70 text-xs">
+                        {formatCommentTime(DEMO_REPLY_TIME)}
                       </span>
                     </CommentHeaderItem>
-                    <span className="font-medium text-accent/70 truncate">
+                    <span className="hidden font-medium text-accent/70 truncate sm:block">
                       Product Designer @Figma
                     </span>
                   </CommentHeaderItemGroup>
@@ -130,7 +133,7 @@ const CommentDemo = () => {
                       </button>
                     )}
                   >
-                    <p className="w-full min-w-0 break-words text-base my-0!">
+                    <p className="w-full min-w-0 wrap-break-word text-base my-0!">
                       Agreed! The spacing and typography are really well
                       balanced.
                     </p>
@@ -142,23 +145,29 @@ const CommentDemo = () => {
           </CommentReplyItem>
         </CommentReplyList>
       )}
-      <CommentReplyToggle onClick={()=>setIsOpen((prev)=>!prev)} className="cursor-pointer">
+      <CommentReplyToggle
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="cursor-pointer"
+      >
         {isOpen ? "Hide replies" : "Show replies"}
       </CommentReplyToggle>
     </Comment>
   );
 };
 
-type FooterActions = {
-  like: number;
-  dislike: boolean;
-};
-
 const CommentFOOTER = () => {
-  const [footerActions, setFooterActions] = useState<FooterActions>({
-    like: 0,
-    dislike: false,
-  });
+  const [reaction, setReaction] = useState<"like" | "dislike" | null>(null);
+
+  const handleLike = () => {
+    setReaction((prev) => (prev === "like" ? null : "like"));
+  };
+
+  const handleDislike = () => {
+    setReaction((prev) => (prev === "dislike" ? null : "dislike"));
+  };
+
+  const isLiked = reaction === "like";
+  const isDisliked = reaction === "dislike";
 
   return (
     <CommentFooter className="*:hover:cursor-pointer [&_button]:gap-x-1 [&_button]:text-accent/80">
@@ -173,33 +182,23 @@ const CommentFOOTER = () => {
       <button
         data-item="like"
         className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
-        onClick={() =>
-          setFooterActions((prev) => ({
-            ...prev,
-            like: prev.like + 1,
-          }))
-        }
+        onClick={handleLike}
       >
-        <ThumbsUp className="size-4 translate-y-0.5" />
-        {footerActions.like}
+        <ThumbsUp
+          fill={isLiked ? "currentColor" : "none"}
+          className={cn("size-4 translate-y-0.5", isLiked && "text-white")}
+        />
+        {isLiked ? 1 : 0}
       </button>
 
       <button
         data-item="dislike"
         className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
-        onClick={() =>
-          setFooterActions((prev) => ({
-            ...prev,
-            dislike: !prev.dislike,
-          }))
-        }
+        onClick={handleDislike}
       >
         <ThumbsDown
-          fill={footerActions.dislike ? "currentColor" : ""}
-          className={cn(
-            "size-4 translate-y-0.5",
-            footerActions.dislike && "text-white",
-          )}
+          fill={isDisliked ? "currentColor" : "none"}
+          className={cn("size-4 translate-y-0.5", isDisliked && "text-white")}
         />
       </button>
 

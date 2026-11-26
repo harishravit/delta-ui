@@ -8,30 +8,41 @@ description: A flexible React component for building a comment section. Add comm
 <Tabs items={["pnpm", "npm", "yarn", "bun"]} groupId="pm" persist>
   <Tab value="pnpm">
     ```bash
-    pnpm dlx shadcn@latest add harishravit/delta-ui/comment
+    pnpm dlx shadcn@latest add @delta-ui/comment
     ```
   </Tab>
   <Tab value="npm">
-    ```bash
-    npx shadcn@latest add harishravit/delta-ui/comment 
-    ```
-  </Tab>
+  ```bash
+   npx shadcn@latest add @delta-ui/comment
+   ```
+   </Tab>
   <Tab value="yarn">
     ```bash
-    yarn dlx shadcn@latest add harishravit/delta-ui/comment 
+    yarn dlx shadcn@latest add @delta-ui/comment
     ```
-</Tab>
+  </Tab>
   <Tab value="bun">
     ```bash
-    bunx --bun shadcn@latest add harishravit/delta-ui/comment
+    bunx --bun shadcn@latest add @delta-ui/comment
     ```
   </Tab>
 </Tabs>
 
 ## Usage
 
-```tsx title="src/comment.tsx" lineNumbers
+import Comment from "@/example/comment-demo";
+import ComponentPreview from "@/utils/component-preview";
+
+<Tabs items={["Preview", "Code", "Structure"]}>
+  <Tab value="Preview">
+    <ComponentPreview className="w-full" title="Comment.tsx">
+      <Comment />
+    </ComponentPreview>
+  </Tab>
+  <Tab value="Code">
+  ```tsx title="comment.tsx" lineNumbers
 import {
+  cn,
   formatCommentTime,
   getAvatar,
 } from "@/components/comment/lib/utils/helpers";
@@ -51,199 +62,209 @@ import {
   CommentMessageText,
   CommentReplyItem,
   CommentReplyList,
+  CommentReplyToggle,
   CommentSide,
 } from "@/components/comment/ui";
-import {
-  Ellipsis,
-  MessageCircle,
-  Share2,
-  ThumbsDown,
-  ThumbsUp,
-} from "lucide-react";
+import { Ellipsis, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
+import { useState } from "react";
 
-const Comment = () => {
+const DEMO_PRIMARY_TIME = "2026-11-25T12:00:00.000Z";
+const DEMO_REPLY_TIME = "2026-11-26T12:00:00.000Z";
+
+const CommentDemo = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
-    <div className="container mx-auto max-w-xl flex items-center justify-center h-screen px-2">
-      <div className="w-full overflow-y-auto scrollbar-thin">
-        <Comment>
-          <CommentMain>
+    <Comment className="[--border-thread-hover:var(--color-gray-50)]">
+      <CommentMain>
+        <CommentContent>
+          <CommentSide>
+            <CommentAvatar className="bg-red-500">
+              <CommentAvatarImage src={getAvatar("olivia-rhye")} alt="olivia" />
+            </CommentAvatar>
+          </CommentSide>
+          <CommentBody>
+            <CommentHeader className="items-baseline">
+              <CommentHeaderItemGroup>
+                <CommentHeaderItem className="*:text-xs flex-wrap">
+                  <h3 className="text-sm! text-primary font-medium m-0!">
+                    Harish
+                  </h3>
+                  <a className="max-w-24 truncate text-xs text-accent/90 font-medium cursor-pointer hover:text-primary">
+                    @harish Ravi
+                  </a>
+                  <span className="text-accent/90">&bull;</span>
+                  <span className="text-accent/90 truncate">
+                    {formatCommentTime(DEMO_PRIMARY_TIME)}
+                  </span>
+                </CommentHeaderItem>
+                <span className="hidden font-medium *:text-xs! text-accent/90 sm:block">
+                  Author of <a href="https://delta-ui.vercel.app">@Delta-ui</a>
+                </span>
+              </CommentHeaderItemGroup>
+              <CommentHeaderItem className="shrink-0">
+                <Ellipsis
+                  aria-label="more action"
+                  className="size-4 cursor-pointer text-accent/85 hover:text-primary"
+                />
+              </CommentHeaderItem>
+            </CommentHeader>
+            <CommentMessageContent>
+              <CommentMessageText>
+                <p className="w-full min-w-0 text-base my-0!">
+                  I really like this design! The overall layout feels clean and
+                  intuitive.
+                </p>
+                <button
+                  role="readmore text"
+                  className="text-accent/90 w-max max-w-full h-max p-0 text-xs! flex items-baseline"
+                >
+                  <Ellipsis
+                    aria-roledescription="show more text"
+                    className="size-4 translate-y-1.25"
+                  />
+                  Readmore
+                </button>
+              </CommentMessageText>
+            </CommentMessageContent>
+
+            <CommentFOOTER />
+          </CommentBody>
+        </CommentContent>
+      </CommentMain>
+      {isOpen && (
+        <CommentReplyList>
+          <CommentReplyItem>
             <CommentContent>
               <CommentSide>
-                <CommentAvatar className="bg-red-500">
+                <CommentAvatar className="bg-yellow-500">
                   <CommentAvatarImage
-                    src={getAvatar("olivia-rhye")}
-                    alt="olivia"
+                    src={getAvatar("Harsha_dev")}
+                    alt="Harsha_dev"
                   />
                 </CommentAvatar>
               </CommentSide>
               <CommentBody>
-                <CommentHeader>
-                  <CommentHeaderItemGroup>
-                    <CommentHeaderItem>
-                      <h3 className="text-sm text-primary font-semibold">
-                        olivia
+                <CommentHeader className="items-baseline">
+                  <CommentHeaderItemGroup className="pr-2">
+                    <CommentHeaderItem className="*:text-xs flex-wrap">
+                      <h3 className="text-sm! text-primary font-medium m-0!">
+                        Harsha_dev
                       </h3>
-                      <a className="text-accent/90 font-medium cursor-pointer hover:text-primary">
-                        @Olivia Rhye
+                      <a className="max-w-20 truncate text-accent/70 font-medium cursor-pointer hover:text-primary">
+                        @harsha
                       </a>
-                      <span className="text-accent/90">&bull;</span>
-                      <span className="text-accent/90">
-                        {formatCommentTime("2026-11-11T10:30:00Z")}
+                      <span className="text-accent/70 text-sm">&bull;</span>
+                      <span className="max-w-24 truncate text-accent/70 text-xs">
+                        {formatCommentTime(DEMO_REPLY_TIME)}
                       </span>
                     </CommentHeaderItem>
-                    <span className="font-medium text-accent/90">
-                      Software Engineer @Zoho
+                    <span className="hidden font-medium text-accent/70 truncate sm:block">
+                      Product Designer @Figma
                     </span>
                   </CommentHeaderItemGroup>
-                  <CommentHeaderItem>
-                    <Ellipsis
-                      aria-label="more action"
-                      className="size-4 cursor-pointer text-accent/85 hover:text-primary"
-                    />
+                  <CommentHeaderItem className="shrink-0">
+                    <Ellipsis className="size-4 cursor-pointer text-accent/85 hover:text-primary" />
                   </CommentHeaderItem>
                 </CommentHeader>
-
                 <CommentMessageContent>
-                  <CommentMessageText>
-                    <p className="min-w-0 wrap-break-word text-base w-fit">
-                      I really like this design! The overall layout feels clean
-                      and intuitive.
+                  <CommentMessageText
+                    render={() => (
+                      <button className="text-accent/90 w-max max-w-full h-max p-0 text-xs! flex items-baseline">
+                        <Ellipsis className="size-4 translate-y-1.25" />
+                        Readmore
+                      </button>
+                    )}
+                  >
+                    <p className="w-full min-w-0 wrap-break-word text-base my-0!">
+                      Agreed! The spacing and typography are really well
+                      balanced.
                     </p>
-                    <button
-                      role="readmore text"
-                      className="text-accent/90 w-max max-w-full h-max p-0 text-xs! flex items-baseline"
-                    >
-                      <Ellipsis
-                        aria-roledescription="show more text"
-                        className="size-4 translate-y-1.25"
-                      />
-                      Readmore
-                    </button>
                   </CommentMessageText>
                 </CommentMessageContent>
-
-                <CommentFooter className="[&_button]:gap-x-1 [&_button]:text-accent/80">
-                  <button
-                    data-item="reply"
-                    className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
-                  >
-                    <MessageCircle className="size-4 translate-y-0.75" />
-                    <span className="hidden lg:block">Reply</span>
-                  </button>
-                  <button
-                    data-item="like"
-                    className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
-                  >
-                    <ThumbsUp className="size-4 translate-y-0.5" />
-                    24
-                  </button>
-                  <button className="bg-transparent">
-                    <CommentAvatar className="bg-red-400">
-                      <CommentAvatarImage
-                        src={getAvatar("olivia-rhye")}
-                        alt="olivia"
-                      />
-                      <CommentAvatarBadge>❤️</CommentAvatarBadge>
-                    </CommentAvatar>
-                  </button>
-                </CommentFooter>
+                <CommentFOOTER />
               </CommentBody>
             </CommentContent>
-          </CommentMain>
-          <CommentReplyList>
-            <CommentReplyItem>
-              <CommentContent>
-                <CommentSide>
-                  <CommentAvatar className="bg-red-500">
-                    <CommentAvatarImage
-                      src={getAvatar("phoenix-baker")}
-                      alt="phoenix"
-                    />
-                  </CommentAvatar>
-                </CommentSide>
-                <CommentBody>
-                  <CommentHeader>
-                    <CommentHeaderItemGroup className="pr-2">
-                      <CommentHeaderItem>
-                        <h3 className="text-sm text-primary font-semibold">
-                          phoenix
-                        </h3>
-                        <a className="text-accent/70 font-medium cursor-pointer hover:text-primary truncate">
-                          @Phoenix Baker
-                        </a>
-                        <span className="text-accent/70 text-sm">&bull;</span>
-                        <span className="text-accent/70 text-xs truncate">
-                          {formatCommentTime("2026-11-11T11:00:00Z")}
-                        </span>
-                      </CommentHeaderItem>
-                      <span className="font-medium text-accent/70 truncate">
-                        Product Designer @Figma
-                      </span>
-                    </CommentHeaderItemGroup>
-                    <CommentHeaderItem>
-                      <Ellipsis className="size-4 cursor-pointer text-accent/85 hover:text-primary" />
-                    </CommentHeaderItem>
-                  </CommentHeader>
-                  <CommentMessageContent>
-                    <CommentMessageText
-                      render={() => (
-                        <button className="text-accent/90 w-max max-w-full h-max p-0 text-xs! flex items-baseline">
-                          <Ellipsis className="size-4 translate-y-1.25" />
-                          Readmore
-                        </button>
-                      )}
-                    >
-                      <p className="min-w-0 wrap-break-word text-base w-fit">
-                        Agreed! The spacing and typography are really well
-                        balanced.
-                      </p>
-                    </CommentMessageText>
-                  </CommentMessageContent>
-
-                  <CommentFooter className="[&_button]:gap-x-1 [&_button]:text-accent/80">
-                    <button
-                      data-item="dislike"
-                      className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
-                    >
-                      <ThumbsDown className="size-4 translate-y-1" />0
-                    </button>
-                    <button
-                      data-item="share"
-                      className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
-                    >
-                      <Share2 className="size-4 translate-y-1" />
-                      share
-                    </button>
-                    <button>
-                      <CommentAvatar className="bg-red-400">
-                        <CommentAvatarImage
-                          src={getAvatar("phoenix-baker")}
-                          alt="phoenix"
-                        />
-                        <CommentAvatarBadge>🤣</CommentAvatarBadge>
-                      </CommentAvatar>
-                    </button>
-                  </CommentFooter>
-                </CommentBody>
-              </CommentContent>
-            </CommentReplyItem>
-          </CommentReplyList>
-        </Comment>
-      </div>
-    </div>
+          </CommentReplyItem>
+        </CommentReplyList>
+      )}
+      <CommentReplyToggle
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="cursor-pointer"
+      >
+        {isOpen ? "Hide replies" : "Show replies"}
+      </CommentReplyToggle>
+    </Comment>
   );
 };
 
-export default Comment;
-```
-## Code structure
-```tsx title="comment.tsx" lineNumbers
+const CommentFOOTER = () => {
+  const [reaction, setReaction] = useState<"like" | "dislike" | null>(null);
+
+  const handleLike = () => {
+    setReaction((prev) => (prev === "like" ? null : "like"));
+  };
+
+  const handleDislike = () => {
+    setReaction((prev) => (prev === "dislike" ? null : "dislike"));
+  };
+
+  const isLiked = reaction === "like";
+  const isDisliked = reaction === "dislike";
+
+  return (
+    <CommentFooter className="*:hover:cursor-pointer [&_button]:gap-x-1 [&_button]:text-accent/80">
+      <button
+        data-item="reply"
+        className="text-accent/90 w-max max-w-full h-max px-0 text-sm flex items-baseline"
+      >
+        <MessageCircle className="size-4" />
+        <span className="hidden lg:block">Reply</span>
+      </button>
+
+      <button
+        data-item="like"
+        className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
+        onClick={handleLike}
+      >
+        <ThumbsUp
+          fill={isLiked ? "currentColor" : "none"}
+          className={cn("size-4 translate-y-0.5", isLiked && "text-white")}
+        />
+        {isLiked ? 1 : 0}
+      </button>
+
+      <button
+        data-item="dislike"
+        className="text-accent/90 w-max max-w-full h-max p-0 text-sm flex items-baseline"
+        onClick={handleDislike}
+      >
+        <ThumbsDown
+          fill={isDisliked ? "currentColor" : "none"}
+          className={cn("size-4 translate-y-0.5", isDisliked && "text-white")}
+        />
+      </button>
+
+      <button className="bg-transparent translate-y-1">
+        <CommentAvatar className="bg-red-400">
+          <CommentAvatarImage src={getAvatar("olivia-rhye")} alt="olivia" />
+          <CommentAvatarBadge>❤️</CommentAvatarBadge>
+        </CommentAvatar>
+      </button>
+    </CommentFooter>
+  );
+};
+
+export default CommentDemo;
+  ```
+  </Tab>
+    <Tab value="Structure">
+  ```tsx title="comment.tsx" lineNumbers
 <Comment>
   <CommentMain>
     <CommentContent>
       <CommentSide>
         <CommentAvatar>
-          <CommentAvatarImage></CommentAvatarImage>
+          <CommentAvatarImage />
         </CommentAvatar>
       </CommentSide>
       <CommentBody>
@@ -265,40 +286,24 @@ export default Comment;
   <CommentReplyList>
     <CommentReplyItem>
       <CommentContent>
-        <CommentSide>
-          <CommentAvatar>
-            <CommentAvatarImage />
-          </CommentAvatar>
-        </CommentSide>
-        <CommentBody>
-          <CommentHeader>
-            <CommentHeaderItemGroup>
-              <CommentHeaderItem />
-              <CommentHeaderItem />
-            </CommentHeaderItemGroup>
-            <CommentHeaderItem />
-          </CommentHeader>
-          <CommentMessageContent>
-            <CommentMessageMedia />
-            <CommentMessageText />
-          </CommentMessageContent>
-          <CommentFooter />
-        </CommentBody>
+        {/* Recursively render the replies */}
+        <CommentReplyList>
+          <CommentReplyItem>
+            <CommentContent>
+              {/* Recursively render the replies */}
+            </CommentContent>
+          </CommentReplyItem>
+        </CommentReplyList>
       </CommentContent>
     </CommentReplyItem>
   </CommentReplyList>
 </Comment>
 ```
-
-import Comment from "@/example/comment-demo"; 
-import ComponentPreview from "@/utils/component-preview";
-
-<ComponentPreview className="w-full" title="Comment.tsx">
-<Comment/>
-</ComponentPreview>
+  </Tab>
+</Tabs>
 ## Component composition
 
-Following composition to build your comment component.
+Follow the composition to build your comment component.
 
 ```
 Comment
@@ -348,12 +353,6 @@ Comment
 - **CommentAvatarImage** — Displays the user's profile image.
 - **CommentAvatarBadge** — Displays a small badge at the bottom-right corner of the avatar, typically used for reactions such as ❤️.
   following structure for build avatar component
-
-```
-CommentAvatar
-├── CommentAvatarImage
-└── CommentAvatarBadge
-```
 - **CommentBody** — The right side of a comment, containing the header, message, and footer.
 - **CommentHeader** — The top section of a comment, displaying user information and actions.
 - **CommentHeaderItem** — Arranges items horizontally in a single line, such as username, handle, date, or action icons.
@@ -365,17 +364,6 @@ CommentAvatar
 - **CommentReplyList** — Holds the collection of replies belonging to a comment.
 - **CommentReplyItem** — Represents an individual reply, using the same content layout as the main comment.
 - **CommentReplyToggle** — Controls the visibility of a comment's replies by expanding or collapsing the reply list.
-
-```
-CommentReplyList
-├── CommentReplyItem
-│ └── CommentContent
-│ └── CommentReplyList
-│ ├── CommentReplyItem
-│ └── CommentReplyToggle
-└── CommentReplyToggle
-```
-
 <Callout title="Note" type="info">
 
 - You don't need to draw or import the thread lines. They come built into the components.

@@ -3,8 +3,11 @@
     "---Overview---",
     "index",
     "components/index",
+    "hooks/index",
     "---Sections---",
-    "components",
-    "hooks"
+    "---components---",
+    "...components",
+    "---hooks---",
+    "...hooks"
   ]
 }
