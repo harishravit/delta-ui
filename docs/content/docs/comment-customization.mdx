@@ -1,0 +1,121 @@
+---
+title: Comment Customization
+description: Customize the comment component. Resize avatars, thread lines and spacing from a few CSS variables.
+---
+
+The comment component sizes everything from a few base variables. Avatar, thread lines, bends and spacing are all calculated from them. Change one value and the rest follows.
+
+## Why this method
+
+The comment UI has many parts that must line up: the avatar, the vertical thread line, the bend into a reply, the gaps between them. Hard-coded widths and heights break this alignment as soon as one size changes.
+
+Here, every part is tied to the avatar size. This keeps the look consistent and removes manual fixes.
+
+Example: set a larger avatar and the thread lines, bends and gaps adjust on their own. The reply avatar and the footer avatar can still be sized separately.
+
+## Base size constants
+
+These are the only values most projects need to change.
+
+| Variable | Default | What it controls |
+|---|---|---|
+| `--comment-avatar-border` | `0.125rem` (2px) | Border width around the avatar. |
+| `--comment-avatar-size` | `calc(2.5rem - border)` (38px) | Avatar size in the main comment. The border is subtracted so the total stays 2.5rem. |
+| `--comment-avatar-top-padding` | `0.5rem` (8px) | Visual gap above the avatar. Keeps the avatar from touching the line that separates comment items. |
+| `--comment-thread-line-stroke` | `0.125rem` (2px) | Thickness of the thread line. |
+| `--comment-reply-avatar-size` | Same as avatar size, rounded to 2px (38px) | Avatar size inside reply items. Inherits the main avatar size by default. Set it to render a different size for replies. |
+| `--comment-footer-avatar-size` | Half of avatar size, rounded to 2px (20px) | Avatar size in the comment footer. |
+| `--comment-side-padding-right` | 16px | Space to the right of the avatar column. Derived from the reply avatar size, border and line stroke. |
+
+## Thread calculations
+
+These values are derived. They are not meant to be set by hand.
+
+| Variable | Default | What it controls |
+|---|---|---|
+| `--comment-thread-vertical-gap` | 6px | Gap between the avatar and the vertical line. |
+| `--comment-thread-bend-gap` | 6px | Gap between a reply avatar and its thread bend. |
+| `--comment-thread-vertical-row` | 20px | Height of the vertical line area (half the avatar size). |
+| `--comment-thread-bend-row` | 28px | Width of the bend area. |
+| `--comment-thread-bend-center` | 30px | Vertical center point of the bend. |
+
+All calculated values are rounded to the nearest 2px. This snaps lines to even pixels, so they stay sharp and aligned on screen.
+
+## Thread colors
+
+| Variable | Default |
+|---|---|
+| `--border-thread-default` | `var(--color-gray-400)` |
+| `--border-thread-hover` | `var(--color-gray-500)` |
+
+## Reply items
+
+Inside `[data-slot="comment-reply-render"]`, the avatar size is replaced by the reply avatar size. The bend row, bend center and vertical row are recalculated from it.
+
+Reply items always use `--comment-reply-avatar-size`. The main comment uses `--comment-avatar-size`.
+
+Calculated values for a reply item with default settings:
+
+| Variable | Value |
+|---|---|
+| `--comment-thread-bend-row` | 28px |
+| `--comment-thread-bend-center` | 32px |
+| `--comment-thread-vertical-row` | 20px |
+
+## Customization examples
+
+**1. Change the avatar size everywhere**
+
+```css
+:root {
+  --comment-avatar-size: calc(3rem - var(--comment-avatar-border));
+}
+```
+
+The reply avatar, footer avatar, thread lines, bends and gaps all update. Nothing else needs to change.
+
+**2. Different avatar size for replies (YouTube style)**
+
+```css
+:root {
+  --comment-reply-avatar-size: 28px;
+}
+```
+
+The main avatar stays at 38px. Reply items recalculate:
+
+| Variable | Default | With 28px reply avatar |
+|---|---|---|
+| `--comment-side-padding-right` | 16px | 10px |
+| `--comment-thread-bend-gap` | 6px | 4px |
+| `--comment-thread-bend-row` | 28px | 22px |
+| `--comment-thread-bend-center` | 32px | 26px |
+| `--comment-thread-vertical-row` | 20px | 14px |
+
+**3. Footer avatar separately**
+
+```css
+:root {
+  --comment-footer-avatar-size: 24px;
+}
+```
+
+Only the footer avatar changes. Thread lines are not affected.
+
+**4. Thicker thread line**
+
+```css
+:root {
+  --comment-thread-line-stroke: 0.25rem;
+}
+```
+
+Side padding and bend gap adjust to keep the line centered under the avatar.
+
+<Callout type="info" title="Rules to follow">
+
+- Change base constants only. Do not override the calculated thread values.
+- Avatar size drives the main comment. Reply avatar size drives reply items.
+- The footer avatar follows the main avatar by default. Override it only when a different size is needed.
+
+</Callout>
