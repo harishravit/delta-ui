@@ -4,27 +4,16 @@
   --comment-avatar-size: calc(2.5rem - var(--comment-avatar-border));
   --comment-avatar-top-padding: 0.5rem;
   --comment-thread-line-stroke: 0.125rem;
-  /*
-       This is control the each reply item avatar size.
-       default this inherit main avatar size.
-
-       example:Youtube style different avatar sizes render for main and reply item.
-         --comment-reply-avatar-size: round(
-                nearest,
-                calc(var(--comment-avatar-size)),
-                2px
-          );
-   */
   --comment-reply-avatar-size: round(
     nearest,
-    calc(var(--comment-avatar-size)),
+    var(--comment-avatar-size),
     2px
   );
 
   --comment-footer-avatar-size: round(
     nearest,
     calc(var(--comment-avatar-size) / 2),
-    1px
+    2px
   );
 
   --comment-side-padding-right: round(
@@ -41,14 +30,14 @@
   /*handle gap between comment side avatar and the vertical line gap*/
   --comment-thread-vertical-gap: round(
     nearest,
-    calc(var(--comment-side-padding-right) / 2 + var(--comment-avatar-border)),
+    calc(var(--comment-avatar-top-padding) - var(--comment-avatar-border)),
     2px
   );
   /* handle gap between reply item avatar and it thread bend */
   --comment-thread-bend-gap: round(
     nearest,
     calc(
-      var(--comment-side-padding-right) / 2 + var(--comment-avatar-border) -
+      var(--comment-side-padding-right) / 2 + var(--comment-avatar-border)  -
         var(--comment-thread-line-stroke) * 2
     ),
     2px
@@ -68,17 +57,17 @@
       var(--comment-avatar-size) + var(--comment-thread-bend-gap) -
         var(--comment-side-padding-right)
     ),
-    1px
+    2px
   );
   /* handle thread bend center this center logic work base on reply item avatar size*/
   --comment-thread-bend-center: round(
     nearest,
     calc(
       (
-          var(--comment-reply-avatar-size) / 2 +
+          var(--comment-avatar-size) / 2 +
             var(--comment-avatar-top-padding)
         ) +
-        var(--comment-avatar-border) * 2
+        var(--comment-avatar-border) 
     ),
     2px
   );
@@ -96,14 +85,14 @@
       var(--comment-reply-avatar-size) + var(--comment-thread-bend-gap) -
         var(--comment-side-padding-right)
     ),
-    1px
+    2px
   );
   --comment-avatar-size: var(--comment-reply-avatar-size);
-  --comment-thread-bend-center: calc(
+  --comment-thread-bend-center: round(nearest,calc(
     (var(--comment-reply-avatar-size) / 2) + var(--comment-avatar-top-padding) +
-      var(--comment-avatar-border)
-  );
-  --comment-thread-vertical-row: calc(var(--comment-reply-avatar-size) / 2);
+      var(--comment-avatar-border) * 2
+  ),2px)
+  --comment-thread-vertical-row: round(nearest,calc(var(--comment-reply-avatar-size) / 2),2px);
 }
 /* comment root */
 /* Hide main thread when there are no replies and no reply toggle */
